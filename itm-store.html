@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ITM Store - Aplicativos Android</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="itm-store.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="hamburger-container">
+                <div class="hamburger" id="hamburger">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="logo">
+                <span class="logo-text">ITM</span>
+                <span class="logo-dot"></span>
+            </div>
+            <div class="nav-links">
+                <a href="itm.html">Início</a>
+                <a href="#apps">Aplicativos</a>
+                <a href="#about">Sobre</a>
+            </div>
+        </nav>
+        <div class="mobile-menu" id="mobileMenu">
+            <a href="itm.html"><i class="fas fa-home"></i> Início</a>
+            <a href="#apps"><i class="fas fa-mobile-alt"></i> Aplicativos</a>
+            <a href="#about"><i class="fas fa-info-circle"></i> Sobre</a>
+        </div>
+    </header>
+
+    <div class="datetime-container">
+        <div class="date" id="currentDate">Carregando...</div>
+        <div class="time" id="currentTime">Carregando...</div>
+    </div>
+
+    <section id="home" class="hero active">
+        <div class="hero-content">
+            <div class="logo-large">
+                <span class="logo-letter">I</span>
+                <span class="logo-letter">T</span>
+                <span class="logo-letter">M</span>
+            </div>
+            <h1 class="slogan">ITM Store - Aplicativos Android</h1>
+            <a href="#apps" class="cta-button">Explorar Aplicativos</a>
+        </div>
+    </section>
+
+    <section id="apps">
+        <h2 class="section-title">Nossos Aplicativos Android</h2>
+        <div class="apps-container">
+            <div class="app-card">
+                <div class="app-image">
+                    <i class="fas fa-calculator"></i>
+                </div>
+                <div class="app-info">
+                    <h3 class="app-title">Calculadora ITM</h3>
+                    <p class="app-desc">Uma calculadora avançada com funções científicas e interface moderna.</p>
+                    <div class="app-meta">
+                        <span class="app-version">v2.1.3</span>
+                        <span class="app-size">15 MB</span>
+                        <span class="app-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                    </div>
+                    <div class="app-features">
+                        <span class="feature-tag">Científica</span>
+                        <span class="feature-tag">Conversor</span>
+                        <span class="feature-tag">Histórico</span>
+                    </div>
+                    <div class="app-actions">
+                        <a href="#" class="cta-button download-button" data-app="calculadora">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                        <button class="cta-button view-gallery" data-app="calculadora">
+                            <i class="fas fa-images"></i> Galeria
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-card">
+                <div class="app-image">
+                    <i class="fas fa-tasks"></i>
+                </div>
+                <div class="app-info">
+                    <h3 class="app-title">Gerenciador de Tarefas</h3>
+                    <p class="app-desc">Organize suas tarefas diárias com notificações e categorias personalizáveis.</p>
+                    <div class="app-meta">
+                        <span class="app-version">v1.5.2</span>
+                        <span class="app-size">22 MB</span>
+                        <span class="app-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                    </div>
+                    <div class="app-features">
+                        <span class="feature-tag">Notificações</span>
+                        <span class="feature-tag">Categorias</span>
+                        <span class="feature-tag">Sincronização</span>
+                    </div>
+                    <div class="app-actions">
+                        <a href="#" class="cta-button download-button" data-app="tarefas">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                        <button class="cta-button view-gallery" data-app="tarefas">
+                            <i class="fas fa-images"></i> Galeria
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-card">
+                <div class="app-image">
+                    <i class="fas fa-cloud-sun"></i>
+                </div>
+                <div class="app-info">
+                    <h3 class="app-title">Previsão do Tempo</h3>
+                    <p class="app-desc">Aplicativo de previsão do tempo com dados em tempo real e alertas meteorológicos.</p>
+                    <div class="app-meta">
+                        <span class="app-version">v3.0.1</span>
+                        <span class="app-size">18 MB</span>
+                        <span class="app-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                    </div>
+                    <div class="app-features">
+                        <span class="feature-tag">Tempo Real</span>
+                        <span class="feature-tag">Alertas</span>
+                        <span class="feature-tag">Multi-cidades</span>
+                    </div>
+                    <div class="app-actions">
+                        <a href="#" class="cta-button download-button" data-app="tempo">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                        <button class="cta-button view-gallery" data-app="tempo">
+                            <i class="fas fa-images"></i> Galeria
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-card">
+                <div class="app-image">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                </div>
+                <div class="app-info">
+                    <h3 class="app-title">Controle Financeiro</h3>
+                    <p class="app-desc">Controle suas finanças pessoais com gráficos, relatórios e planejamento orçamentário.</p>
+                    <div class="app-meta">
+                        <span class="app-version">v2.4.0</span>
+                        <span class="app-size">25 MB</span>
+                        <span class="app-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                    </div>
+                    <div class="app-features">
+                        <span class="feature-tag">Gráficos</span>
+                        <span class="feature-tag">Relatórios</span>
+                        <span class="feature-tag">Orçamento</span>
+                    </div>
+                    <div class="app-actions">
+                        <a href="#" class="cta-button download-button" data-app="financas">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                        <button class="cta-button view-gallery" data-app="financas">
+                            <i class="fas fa-images"></i> Galeria
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-card">
+                <div class="app-image">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="app-info">
+                    <h3 class="app-title">Leitor de E-books</h3>
+                    <p class="app-desc">Leitor de livros digitais com suporte a múltiplos formatos e opções de personalização.</p>
+                    <div class="app-meta">
+                        <span class="app-version">v1.8.5</span>
+                        <span class="app-size">12 MB</span>
+                        <span class="app-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                        </span>
+                    </div>
+                    <div class="app-features">
+                        <span class="feature-tag">Multi-formatos</span>
+                        <span class="feature-tag">Marcadores</span>
+                        <span class="feature-tag">Modo Noturno</span>
+                    </div>
+                    <div class="app-actions">
+                        <a href="#" class="cta-button download-button" data-app="ebook">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                        <button class="cta-button view-gallery" data-app="ebook">
+                            <i class="fas fa-images"></i> Galeria
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="app-card">
+                <div class="app-image">
+                    <i class="fas fa-music"></i>
+                </div>
+                <div class="app-info">
+                    <h3 class="app-title">Player de Música</h3>
+                    <p class="app-desc">Reprodutor de música com equalizador, playlists e suporte a múltiplos formatos de áudio.</p>
+                    <div class="app-meta">
+                        <span class="app-version">v2.3.7</span>
+                        <span class="app-size">20 MB</span>
+                        <span class="app-rating">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                    </div>
+                    <div class="app-features">
+                        <span class="feature-tag">Equalizador</span>
+                        <span class="feature-tag">Playlists</span>
+                        <span class="feature-tag">Letras</span>
+                    </div>
+                    <div class="app-actions">
+                        <a href="#" class="cta-button download-button" data-app="musica">
+                            <i class="fas fa-download"></i> Download APK
+                        </a>
+                        <button class="cta-button view-gallery" data-app="musica">
+                            <i class="fas fa-images"></i> Galeria
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about">
+        <h2 class="section-title">Sobre a ITM Store</h2>
+        <div class="about-content">
+            <p class="about-text">
+                A ITM Store é a plataforma oficial da ITM para distribuição de aplicativos Android desenvolvidos pela comunidade. 
+                Aqui você encontra uma variedade de softwares, desde utilitários até aplicativos especializados, todos com código aberto 
+                disponível no GitHub.
+            </p>
+            <div class="about-highlights">
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fab fa-android"></i>
+                    </div>
+                    <h3 class="highlight-title">APK Android</h3>
+                    <p class="highlight-desc">Downloads diretos de aplicativos em formato APK.</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-download"></i>
+                    </div>
+                    <h3 class="highlight-title">Download Direto</h3>
+                    <p class="highlight-desc">Baixe os aplicativos diretamente sem intermediários.</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <h3 class="highlight-title">Galeria Visual</h3>
+                    <p class="highlight-desc">Veja fotos e vídeos dos aplicativos antes de baixar.</p>
+                </div>
+                <div class="highlight-card">
+                    <div class="highlight-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <h3 class="highlight-title">Código Aberto</h3>
+                    <p class="highlight-desc">Todos os aplicativos têm seu código-fonte disponível no GitHub.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="logo">
+                <span class="logo-text">ITM</span>
+                <span class="logo-dot"></span>
+            </div>
+            <p class="slogan">Da ideia ao código, do código ao futuro</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-github"></i></a>
+                <a href="#"><i class="fab fa-linkedin"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p class="copyright">&copy; 2023 ITM - Todos os direitos reservados</p>
+        </div>
+    </footer>
+
+    <!-- Modal para Galeria -->
+    <div class="modal" id="galleryModal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalAppTitle">Galeria do Aplicativo</h3>
+                <button class="close-modal" id="closeModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <div class="gallery-section">
+                    <h4 class="video-title">Imagens do Aplicativo</h4>
+                    <div class="gallery-grid" id="appImages">
+                        <!-- Imagens serão inseridas aqui via JavaScript -->
+                    </div>
+                </div>
+                <div class="video-container">
+                    <h4 class="video-title">Vídeo de Demonstração</h4>
+                    <div class="video-wrapper">
+                        <iframe id="demoVideo" src="" frameborder="0" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="itm-store.js"></script>
+</body>
+</html>
