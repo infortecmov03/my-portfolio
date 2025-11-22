@@ -4,10 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ITM Store - Aplicativos Android</title>
+    
+    <!-- Meta Tags -->
+    <meta name="description" content="ITM Store - Baixe aplicativos Android desenvolvidos pela comunidade ITM">
+    <meta name="keywords" content="aplicativos, android, apk, download, ITM, mobile">
+    <meta name="author" content="ITM">
+    
+    <!-- PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="icon" href="icons/icon-192.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/itm-store.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="itm-store.css">
 </head>
 <body>
+    <!-- Barra de Progresso -->
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Botão Instalar PWA -->
+    <button class="install-button" id="installButton">
+        <i class="fas fa-download"></i> Instalar App
+    </button>
+
+    <!-- Indicador PWA -->
+    <div class="pwa-badge" id="pwaBadge">
+        <i class="fas fa-check-circle"></i> App Instalado
+    </div>
+
+    <!-- Header -->
     <header>
         <nav>
             <div class="hamburger-container">
@@ -22,23 +49,60 @@
                 <span class="logo-dot"></span>
             </div>
             <div class="nav-links">
-                <a href="itm.html">Início</a>
+                <a href="index.html">Início</a>
                 <a href="#apps">Aplicativos</a>
                 <a href="#about">Sobre</a>
+                <a href="#" id="settingsBtn"><i class="fas fa-cog"></i></a>
             </div>
         </nav>
         <div class="mobile-menu" id="mobileMenu">
-            <a href="itm.html"><i class="fas fa-home"></i> Início</a>
+            <a href="index.html"><i class="fas fa-home"></i> Início</a>
             <a href="#apps"><i class="fas fa-mobile-alt"></i> Aplicativos</a>
             <a href="#about"><i class="fas fa-info-circle"></i> Sobre</a>
+            <a href="#" id="mobileSettingsBtn"><i class="fas fa-cog"></i> Configurações</a>
         </div>
     </header>
 
+    <!-- Menu Configurações -->
+    <div class="settings-menu" id="settingsMenu">
+        <div class="settings-item">
+            <span><i class="fas fa-bell"></i> Notificações</span>
+            <div class="settings-toggle" id="notificationToggle"></div>
+        </div>
+        <div class="settings-item">
+            <span><i class="fas fa-download"></i> Modo Offline</span>
+            <div class="settings-toggle" id="offlineToggle"></div>
+        </div>
+        <div class="settings-item">
+            <span><i class="fas fa-shield-alt"></i> Segurança</span>
+            <div class="settings-toggle" id="securityToggle"></div>
+        </div>
+    </div>
+
+    <!-- Modal Notificações -->
+    <div class="permission-modal" id="notificationModal">
+        <div class="permission-content">
+            <div class="permission-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <h3 class="permission-title">Notificações</h3>
+            <p class="permission-description">
+                Gostaríamos de enviar notificações sobre novos aplicativos e atualizações.
+            </p>
+            <div class="permission-buttons">
+                <button class="permission-btn deny" id="denyNotifications">Agora Não</button>
+                <button class="permission-btn allow" id="allowNotifications">Permitir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Data e Hora -->
     <div class="datetime-container">
         <div class="date" id="currentDate">Carregando...</div>
         <div class="time" id="currentTime">Carregando...</div>
     </div>
 
+    <!-- Conteúdo da Loja -->
     <section id="home" class="hero active">
         <div class="hero-content">
             <div class="logo-large">
@@ -54,6 +118,7 @@
     <section id="apps">
         <h2 class="section-title">Nossos Aplicativos Android</h2>
         <div class="apps-container">
+            <!-- App Calculadora -->
             <div class="app-card">
                 <div class="app-image">
                     <i class="fas fa-calculator"></i>
@@ -78,7 +143,9 @@
                         <span class="feature-tag">Histórico</span>
                     </div>
                     <div class="app-actions">
-                        <a href="https://github.com/infortecmov03/calculadora-listas/releases" class="cta-button download-button" data-app="calculadora">
+                        <a href="https://github.com/infortecmov03/calculador/releases/download/v3/app-debug.apk" 
+                           class="cta-button download-button" 
+                           data-app="calculadora">
                             <i class="fas fa-download"></i> Download APK
                         </a>
                         <button class="cta-button view-gallery" data-app="calculadora">
@@ -88,6 +155,7 @@
                 </div>
             </div>
 
+            <!-- App Tarefas -->
             <div class="app-card">
                 <div class="app-image">
                     <i class="fas fa-tasks"></i>
@@ -122,6 +190,7 @@
                 </div>
             </div>
 
+            <!-- App Tempo -->
             <div class="app-card">
                 <div class="app-image">
                     <i class="fas fa-cloud-sun"></i>
@@ -156,6 +225,7 @@
                 </div>
             </div>
 
+            <!-- App Finanças -->
             <div class="app-card">
                 <div class="app-image">
                     <i class="fas fa-file-invoice-dollar"></i>
@@ -190,6 +260,7 @@
                 </div>
             </div>
 
+            <!-- App E-book -->
             <div class="app-card">
                 <div class="app-image">
                     <i class="fas fa-book"></i>
@@ -224,6 +295,7 @@
                 </div>
             </div>
 
+            <!-- App Música -->
             <div class="app-card">
                 <div class="app-image">
                     <i class="fas fa-music"></i>
@@ -309,16 +381,16 @@
             </div>
             <p class="slogan">Da ideia ao código, do código ao futuro</p>
             <div class="social-links">
-                <a href="#"><i class="fab fa-youtube"></i></a>
-                <a href="#"><i class="fab fa-github"></i></a>
-                <a href="#"><i class="fab fa-linkedin"></i></a>
-                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="tooltip" data-tooltip="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" class="tooltip" data-tooltip="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" class="tooltip" data-tooltip="LinkedIn"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="tooltip" data-tooltip="Instagram"><i class="fab fa-instagram"></i></a>
             </div>
             <p class="copyright">&copy; 2023 ITM - Todos os direitos reservados</p>
         </div>
     </footer>
 
-    <!-- Modal para Galeria -->
+    <!-- Modal Galeria -->
     <div class="modal" id="galleryModal">
         <div class="modal-content">
             <div class="modal-header">
@@ -342,6 +414,10 @@
         </div>
     </div>
 
-    <script src="itm-store.js"></script>
+    <!-- Scripts -->
+    <script src="js/main.js"></script>
+    <script src="js/pwa-manager.js"></script>
+    <script src="js/download-manager.js"></script>
+    <script src="js/itm-store.js"></script>
 </body>
 </html>
