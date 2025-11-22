@@ -1,3 +1,4 @@
+/* itm-store.css */
 * {
     margin: 0;
     padding: 0;
@@ -288,15 +289,6 @@ section.active {
     transform: translateY(-3px);
 }
 
-.download-button {
-    background: var(--primary);
-    color: var(--text);
-}
-
-.download-button:hover {
-    background: var(--primary-dark);
-}
-
 .section-title {
     text-align: center;
     margin-bottom: 3rem;
@@ -318,7 +310,7 @@ section.active {
     background: linear-gradient(90deg, transparent, var(--primary), transparent);
 }
 
-/* Apps Grid */
+/* Container de Apps */
 .apps-container {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
@@ -327,7 +319,7 @@ section.active {
 
 .app-card {
     background: var(--card-bg);
-    border-radius: 10px;
+    border-radius: 15px;
     overflow: hidden;
     transition: all 0.3s;
     box-shadow: var(--shadow);
@@ -335,36 +327,21 @@ section.active {
     position: relative;
 }
 
-.app-card::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(37, 99, 235, 0.1), transparent);
-    transition: left 0.5s;
-}
-
-.app-card:hover::before {
-    left: 100%;
-}
-
 .app-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 10px 25px rgba(37, 99, 235, 0.3);
+    box-shadow: 0 15px 30px rgba(37, 99, 235, 0.3);
     border-color: rgba(37, 99, 235, 0.3);
 }
 
 .app-image {
     width: 100%;
     height: 200px;
-    background: var(--secondary);
+    background: linear-gradient(135deg, var(--primary), var(--primary-dark));
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 3rem;
-    color: var(--primary);
+    font-size: 4rem;
+    color: white;
     position: relative;
     overflow: hidden;
 }
@@ -373,16 +350,15 @@ section.active {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
+    left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(45deg, transparent 30%, rgba(37, 99, 235, 0.1) 50%, transparent 70%);
-    transform: translateX(-100%);
-    transition: transform 0.6s;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+    transition: left 0.5s;
 }
 
 .app-card:hover .app-image::after {
-    transform: translateX(100%);
+    left: 100%;
 }
 
 .app-info {
@@ -390,14 +366,13 @@ section.active {
 }
 
 .app-title {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     margin-bottom: 0.8rem;
     color: var(--primary);
 }
 
 .app-desc {
     color: var(--text-secondary);
-    font-size: 0.95rem;
     margin-bottom: 1rem;
     line-height: 1.5;
 }
@@ -407,14 +382,12 @@ section.active {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
-    font-size: 0.85rem;
-    color: var(--text-secondary);
+    font-size: 0.9rem;
 }
 
 .app-version, .app-size {
-    background: rgba(255, 255, 255, 0.1);
-    padding: 0.2rem 0.5rem;
-    border-radius: 4px;
+    color: var(--text-secondary);
+    font-weight: 500;
 }
 
 .app-rating {
@@ -432,133 +405,32 @@ section.active {
     background: rgba(37, 99, 235, 0.2);
     color: var(--primary);
     padding: 0.3rem 0.8rem;
-    border-radius: 20px;
+    border-radius: 15px;
     font-size: 0.8rem;
-    border: 1px solid rgba(37, 99, 235, 0.3);
+    font-weight: 500;
 }
 
 .app-actions {
     display: flex;
     gap: 1rem;
-    margin-top: 1rem;
 }
 
-.app-actions .cta-button {
-    flex: 1;
+.download-button {
+    background: var(--primary);
+    color: white !important;
+    border: 2px solid var(--primary) !important;
+    flex: 2;
     text-align: center;
-    padding: 0.6rem 1rem;
-    font-size: 0.9rem;
 }
 
-/* Modal para Galeria */
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    z-index: 2000;
-    backdrop-filter: blur(5px);
+.download-button:hover {
+    background: var(--primary-dark) !important;
 }
 
-.modal-content {
-    position: relative;
-    margin: 5% auto;
-    width: 90%;
-    max-width: 800px;
-    background: var(--card-bg);
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-}
-
-.modal-header {
-    padding: 1.5rem;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: rgba(15, 23, 42, 0.9);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.modal-title {
-    font-size: 1.5rem;
-    color: var(--primary);
-}
-
-.close-modal {
-    background: none;
-    border: none;
-    color: var(--text);
-    font-size: 1.5rem;
-    cursor: pointer;
-    transition: all 0.3s;
-}
-
-.close-modal:hover {
-    color: var(--primary);
-    transform: scale(1.1);
-}
-
-.modal-body {
-    padding: 1.5rem;
-    max-height: 70vh;
-    overflow-y: auto;
-}
-
-.gallery-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 1rem;
-}
-
-.gallery-item {
-    border-radius: 8px;
-    overflow: hidden;
-    height: 150px;
-    background: var(--secondary);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: var(--primary);
-    font-size: 2rem;
-    transition: all 0.3s;
-    cursor: pointer;
-}
-
-.gallery-item:hover {
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
-}
-
-.video-container {
-    margin-top: 2rem;
-}
-
-.video-title {
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
-    color: var(--primary);
-}
-
-.video-wrapper {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
-    height: 0;
-    overflow: hidden;
-    border-radius: 8px;
-    background: var(--secondary);
-}
-
-.video-wrapper iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
+.view-gallery {
+    flex: 1;
+    background: transparent !important;
+    color: var(--primary) !important;
 }
 
 /* Sobre */
@@ -661,6 +533,124 @@ footer {
     font-size: 0.9rem;
 }
 
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    backdrop-filter: blur(5px);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--card-bg);
+    border-radius: 15px;
+    max-width: 900px;
+    width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.modal-title {
+    color: var(--primary);
+    margin: 0;
+}
+
+.close-modal {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-modal:hover {
+    color: var(--text);
+}
+
+.modal-body {
+    padding: 2rem;
+}
+
+.gallery-section {
+    margin-bottom: 2rem;
+}
+
+.video-title {
+    color: var(--primary);
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+}
+
+.gallery-item {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--primary);
+    transition: all 0.3s;
+}
+
+.gallery-item:hover {
+    background: rgba(37, 99, 235, 0.2);
+    transform: scale(1.05);
+}
+
+.video-container {
+    margin-top: 2rem;
+}
+
+.video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 */
+    height: 0;
+    overflow: hidden;
+    border-radius: 10px;
+}
+
+.video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
 /* Responsividade */
 @media (max-width: 768px) {
     .nav-links {
@@ -683,14 +673,6 @@ footer {
         font-size: 2rem;
     }
     
-    .datetime-container {
-        position: relative;
-        top: 0;
-        right: 0;
-        margin: 1rem auto;
-        width: 200px;
-    }
-    
     .apps-container {
         grid-template-columns: 1fr;
     }
@@ -699,9 +681,142 @@ footer {
         flex-direction: column;
     }
     
-    .app-meta {
-        flex-direction: column;
-        gap: 0.5rem;
-        align-items: flex-start;
+    .datetime-container {
+        position: relative;
+        top: 0;
+        right: 0;
+        margin: 1rem auto;
+        width: 200px;
     }
+    
+    .modal-content {
+        width: 95%;
+        margin: 2rem auto;
+    }
+}
+
+/* ===== ESTILOS DO SISTEMA DE DOWNLOAD ===== */
+.download-button.downloading {
+    background: var(--accent) !important;
+    border-color: var(--accent) !important;
+    pointer-events: none;
+}
+
+.download-button.completed {
+    background: #10b981 !important;
+    border-color: #10b981 !important;
+}
+
+/* Modal de Download */
+.download-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10001;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.download-content {
+    background: var(--card-bg);
+    padding: 2rem;
+    border-radius: 15px;
+    max-width: 500px;
+    width: 90%;
+    text-align: center;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: var(--shadow);
+}
+
+.download-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.download-header h3 {
+    color: var(--primary);
+    margin: 0;
+}
+
+.close-download {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 0;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-download:hover {
+    color: var(--text);
+}
+
+/* Barra de Progresso */
+.progress-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+    margin: 1rem 0;
+}
+
+.progress-fill {
+    height: 100%;
+    background: var(--primary);
+    border-radius: 4px;
+    transition: width 0.3s ease;
+    width: 0%;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+}
+
+/* Notificações */
+.notification {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    background: var(--card-bg);
+    padding: 1rem 1.5rem;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+    box-shadow: var(--shadow);
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    animation: slideIn 0.3s ease;
+}
+
+.notification.success { border-color: var(--accent); }
+.notification.error { border-color: #ef4444; }
+.notification button {
+    background: none;
+    border: none;
+    color: var(--text);
+    cursor: pointer;
+    font-size: 1.2rem;
+}
+
+@keyframes slideIn {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
 }
