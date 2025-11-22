@@ -18,6 +18,23 @@
     <!-- PRELOAD PARA PERFORMANCE -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
     <link rel="preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- META TAGS PARA PWA -->
+    <meta name="description" content="ITM - Da ideia ao código, do código ao futuro. Aprenda programação com videoaulas e projetos práticos.">
+    <meta name="keywords" content="programação, desenvolvimento, código, ITM, videoaulas, estudos, tecnologia">
+    <meta name="author" content="ITM">
+    <meta property="og:title" content="ITM - Da Ideia ao Código, do Código ao Futuro">
+    <meta property="og:description" content="Aprenda programação com videoaulas, projetos práticos e muito mais.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    
+    <!-- MANIFEST PWA -->
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    
+    <!-- APPLE TOUCH ICON -->
+    <link rel="apple-touch-icon" href="/icons/icon-192x192.png">
     
     <style>
         * {
@@ -720,11 +737,241 @@
                 width: 90%;
             }
         }
+
+        /* Botão de Instalação do PWA */
+        .install-button {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            z-index: 999;
+            display: none;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(37, 99, 235, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .install-button:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 99, 235, 0.6);
+        }
+
+        .install-button.show {
+            display: flex;
+            animation: slideInUp 0.3s ease;
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Modal de Permissão de Notificações */
+        .permission-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+            backdrop-filter: blur(5px);
+        }
+
+        .permission-modal.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .permission-content {
+            background: var(--card-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: var(--shadow);
+        }
+
+        .permission-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .permission-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .permission-description {
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.5;
+        }
+
+        .permission-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+        }
+
+        .permission-btn {
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+            flex: 1;
+        }
+
+        .permission-btn.allow {
+            background: var(--primary);
+            color: white;
+        }
+
+        .permission-btn.deny {
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text);
+        }
+
+        .permission-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        /* Indicador de PWA Instalado */
+        .pwa-badge {
+            position: fixed;
+            top: 100px;
+            right: 20px;
+            background: var(--accent);
+            color: var(--secondary);
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 998;
+            display: none;
+        }
+
+        .pwa-badge.show {
+            display: block;
+        }
+
+        /* Menu de Configurações de Permissões */
+        .settings-menu {
+            position: fixed;
+            top: 100px;
+            left: 20px;
+            background: var(--card-bg);
+            padding: 1rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 997;
+            display: none;
+        }
+
+        .settings-menu.show {
+            display: block;
+        }
+
+        .settings-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+
+        .settings-toggle {
+            position: relative;
+            width: 50px;
+            height: 25px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            cursor: pointer;
+        }
+
+        .settings-toggle.active {
+            background: var(--primary);
+        }
+
+        .settings-toggle::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 2px;
+            width: 21px;
+            height: 21px;
+            background: white;
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .settings-toggle.active::after {
+            left: 27px;
+        }
+
     </style>
 </head>
 <body>
     <!-- NOVA BARRA DE PROGRESSO -->
     <div class="scroll-progress" id="scrollProgress"></div>
+
+    <button class="install-button" id="installButton">
+        <i class="fas fa-download"></i>
+        Instalar App
+    </button>
+
+    <!-- INDICADOR DE PWA INSTALADO -->
+    <div class="pwa-badge" id="pwaBadge">
+        <i class="fas fa-check-circle"></i> App Instalado
+    </div>
+
+    <!-- MODAL DE PERMISSÃO DE NOTIFICAÇÕES -->
+    <div class="permission-modal" id="notificationModal">
+        <div class="permission-content">
+            <div class="permission-icon">
+                <i class="fas fa-bell"></i>
+            </div>
+            <h3 class="permission-title">Notificações</h3>
+            <p class="permission-description">
+                Gostaríamos de enviar notificações sobre novos vídeos, atualizações e conteúdos exclusivos para mantê-lo sempre atualizado.
+            </p>
+            <div class="permission-buttons">
+                <button class="permission-btn deny" id="denyNotifications">
+                    Agora Não
+                </button>
+                <button class="permission-btn allow" id="allowNotifications">
+                    Permitir
+                </button>
+            </div>
+        </div>
+    </div>
 
     <header>
         <nav>
@@ -744,6 +991,7 @@
                 <a href="#videos">Vídeo Aulas</a>
                 <a href="#study">Área de Estudos</a>
                 <a href="#about">Sobre</a>
+                <a href="#" id="settingsBtn"><i class="fas fa-cog"></i></a>
             </div>
         </nav>
         <div class="mobile-menu" id="mobileMenu">
@@ -751,8 +999,23 @@
             <a href="#videos"><i class="fas fa-play-circle"></i> Vídeo Aulas</a>
             <a href="#study"><i class="fas fa-laptop-code"></i> Área de Estudos</a>
             <a href="itm-store.html"><i class="fas fa-info-circle"></i> Sobre</a>
+            <a href="#" id="mobileSettingsBtn"><i class="fas fa-cog"></i> Configurações</a>
         </div>
     </header>
+
+    <!-- MENU DE CONFIGURAÇÕES -->
+    <div class="settings-menu" id="settingsMenu">
+        <div class="settings-item">
+            <span>Notificações</span>
+            <div class="settings-toggle" id="notificationToggle"></div>
+        </div>
+        <div class="settings-item">
+            <span>Instalar App</span>
+            <button class="cta-button" id="manualInstallBtn" style="padding: 5px 10px; font-size: 0.8rem;">
+                Instalar
+            </button>
+        </div>
+    </div>
 
     <div class="datetime-container">
         <div class="date" id="currentDate">Carregando...</div>
@@ -921,11 +1184,208 @@
     </footer>
 
     <script>
+        // =============================================
+        // SISTEMA DE INSTALAÇÃO PWA (Similar Play Store)
+        // =============================================
+
+        let deferredPrompt;
+        const installButton = document.getElementById('installButton');
+        const pwaBadge = document.getElementById('pwaBadge');
+        const manualInstallBtn = document.getElementById('manualInstallBtn');
+
+        // Verificar se o PWA já está instalado
+        function checkPWAStatus() {
+            if (window.matchMedia('(display-mode: standalone)').matches) {
+                pwaBadge.classList.add('show');
+                installButton.style.display = 'none';
+            }
+        }
+
+        // Evento para capturar a instalação do PWA
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            
+            // Mostrar botão de instalação após um tempo
+            setTimeout(() => {
+                installButton.classList.add('show');
+            }, 3000);
+        });
+
+        // Instalação do PWA
+        async function installPWA() {
+            if (!deferredPrompt) {
+                showNotification('O app já está instalado ou não pode ser instalado neste dispositivo.', 'info');
+                return;
+            }
+
+            deferredPrompt.prompt();
+            const { outcome } = await deferredPrompt.userChoice;
+            
+            if (outcome === 'accepted') {
+                showNotification('App instalado com sucesso!', 'success');
+                installButton.style.display = 'none';
+                pwaBadge.classList.add('show');
+            } else {
+                showNotification('Instalação cancelada.', 'info');
+            }
+            
+            deferredPrompt = null;
+        }
+
+        // Event listeners para instalação
+        installButton.addEventListener('click', installPWA);
+        manualInstallBtn.addEventListener('click', installPWA);
+
+        // =============================================
+        // SISTEMA DE NOTIFICAÇÕES (Similar Play Store)
+        // =============================================
+
+        const notificationModal = document.getElementById('notificationModal');
+        const allowNotificationsBtn = document.getElementById('allowNotifications');
+        const denyNotificationsBtn = document.getElementById('denyNotifications');
+        const notificationToggle = document.getElementById('notificationToggle');
+
+        // Verificar status das notificações
+        function checkNotificationStatus() {
+            if (Notification.permission === 'granted') {
+                notificationToggle.classList.add('active');
+            }
+        }
+
+        // Mostrar modal de notificações (após algum engajamento)
+        function showNotificationModal() {
+            if (Notification.permission === 'default') {
+                setTimeout(() => {
+                    notificationModal.classList.add('active');
+                }, 10000); // Mostrar após 10 segundos
+            }
+        }
+
+        // Solicitar permissão de notificações
+        async function requestNotificationPermission() {
+            try {
+                const permission = await Notification.requestPermission();
+                
+                if (permission === 'granted') {
+                    showNotification('Notificações ativadas com sucesso!', 'success');
+                    notificationToggle.classList.add('active');
+                    
+                    // Enviar notificação de boas-vindas
+                    if ('serviceWorker' in navigator) {
+                        navigator.serviceWorker.ready.then(registration => {
+                            registration.showNotification('Bem-vindo ao ITM!', {
+                                body: 'Agora você receberá atualizações sobre novos conteúdos.',
+                                icon: '/icons/icon-192x192.png',
+                                badge: '/icons/icon-72x72.png'
+                            });
+                        });
+                    }
+                } else {
+                    showNotification('Notificações não permitidas.', 'info');
+                    notificationToggle.classList.remove('active');
+                }
+            } catch (error) {
+                console.error('Erro ao solicitar notificações:', error);
+                showNotification('Erro ao ativar notificações.', 'error');
+            }
+        }
+
+        // Event listeners para notificações
+        allowNotificationsBtn.addEventListener('click', async () => {
+            notificationModal.classList.remove('active');
+            await requestNotificationPermission();
+        });
+
+        denyNotificationsBtn.addEventListener('click', () => {
+            notificationModal.classList.remove('active');
+            localStorage.setItem('notifications_denied', 'true');
+        });
+
+        // Toggle de notificações no menu de configurações
+        notificationToggle.addEventListener('click', async () => {
+            if (Notification.permission === 'granted') {
+                // Desativar notificações
+                notificationToggle.classList.remove('active');
+                showNotification('Notificações desativadas.', 'info');
+            } else {
+                // Ativar notificações
+                await requestNotificationPermission();
+            }
+        });
+
+        // =============================================
+        // SISTEMA DE CONFIGURAÇÕES
+        // =============================================
+
+        const settingsBtn = document.getElementById('settingsBtn');
+        const mobileSettingsBtn = document.getElementById('mobileSettingsBtn');
+        const settingsMenu = document.getElementById('settingsMenu');
+
+        // Toggle do menu de configurações
+        settingsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            settingsMenu.classList.toggle('show');
+        });
+
+        mobileSettingsBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            settingsMenu.classList.toggle('show');
+            // Fechar menu mobile
+            hamburger.classList.remove('active');
+            mobileMenu.classList.remove('active');
+        });
+
+        // Fechar menu ao clicar fora
+        document.addEventListener('click', (e) => {
+            if (!settingsBtn.contains(e.target) && !settingsMenu.contains(e.target)) {
+                settingsMenu.classList.remove('show');
+            }
+        });
+
+        // =============================================
+        // SERVICE WORKER PARA FUNCIONALIDADES OFFLINE
+        // =============================================
+
+        // Registrar Service Worker
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try {
+                    const registration = await navigator.serviceWorker.register('/sw.js');
+                    console.log('Service Worker registrado com sucesso:', registration);
+                } catch (error) {
+                    console.log('Falha no registro do Service Worker:', error);
+                }
+            });
+        }
+
+        // =============================================
+        // INICIALIZAÇÃO
+        // =============================================
+
+        window.addEventListener('load', function() {
+            // Verificar status do PWA
+            checkPWAStatus();
+            
+            // Verificar status das notificações
+            checkNotificationStatus();
+            
+            // Mostrar modal de notificações se não foi negado antes
+            if (!localStorage.getItem('notifications_denied')) {
+                showNotificationModal();
+            }
+            
+            // Seus outros inicializadores existentes
+            typeWriterEffect();
+        });
+
+        // =============================================
+        // SEUS OUTROS SCRIPTS EXISTENTES (mantidos intactos)
+        // =============================================
+
         // Data e Hora em tempo real
         function updateDateTime() {
             const now = new Date();
-            
-            // Formatar data
             const optionsDate = { 
                 weekday: 'long', 
                 year: 'numeric', 
@@ -934,7 +1394,6 @@
             };
             const formattedDate = now.toLocaleDateString('pt-BR', optionsDate);
             
-            // Formatar hora
             const optionsTime = { 
                 hour: '2-digit', 
                 minute: '2-digit', 
@@ -943,14 +1402,12 @@
             };
             const formattedTime = now.toLocaleTimeString('pt-BR', optionsTime);
             
-            // Atualizar elementos
             document.getElementById('currentDate').textContent = formattedDate;
             document.getElementById('currentTime').textContent = formattedTime;
         }
 
-        // Atualizar a cada segundo
         setInterval(updateDateTime, 1000);
-        updateDateTime(); // Chamar imediatamente
+        updateDateTime();
 
         // Menu Hamburguer
         const hamburger = document.getElementById('hamburger');
@@ -961,7 +1418,6 @@
             mobileMenu.classList.toggle('active');
         });
 
-        // Fechar menu ao clicar em um link
         const mobileLinks = document.querySelectorAll('.mobile-menu a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', function() {
@@ -974,7 +1430,6 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
-                
                 const targetId = this.getAttribute('href');
                 const targetElement = document.querySelector(targetId);
                 
@@ -1025,28 +1480,7 @@
             setTimeout(type, 1000);
         }
 
-        // NOVAS FUNCIONALIDADES ADICIONADAS
-
-        // Loading state para os botões
-        document.querySelectorAll('.cta-button').forEach(button => {
-            button.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '#') {
-                    e.preventDefault();
-                    const originalText = this.textContent;
-                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Carregando...';
-                    this.disabled = true;
-                    
-                    setTimeout(() => {
-                        this.innerHTML = originalText;
-                        this.disabled = false;
-                        // Adicionar notificação
-                        showNotification('Funcionalidade em desenvolvimento!', 'info');
-                    }, 1500);
-                }
-            });
-        });
-
-        // Sistema de notificações
+        // Sistema de notificações (existente)
         function showNotification(message, type = 'info') {
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
@@ -1071,11 +1505,25 @@
             progressBar.style.width = `${scrolled}%`;
         });
 
-        // Iniciar efeitos quando a página carregar
-        window.addEventListener('load', function() {
-            typeWriterEffect();
+        // Loading state para os botões
+        document.querySelectorAll('.cta-button').forEach(button => {
+            button.addEventListener('click', function(e) {
+                if (this.getAttribute('href') === '#' && this.id !== 'manualInstallBtn') {
+                    e.preventDefault();
+                    const originalText = this.textContent;
+                    this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Carregando...';
+                    this.disabled = true;
+                    
+                    setTimeout(() => {
+                        this.innerHTML = originalText;
+                        this.disabled = false;
+                        showNotification('Funcionalidade em desenvolvimento!', 'info');
+                    }, 1500);
+                }
+            });
         });
     </script>
 </body>
 
 </html>
+
