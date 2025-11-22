@@ -1,11 +1,12 @@
 {
-  "name": "ITM Store",
+  "name": "ITM - Da Ideia ao Código",
   "short_name": "ITM",
-  "description": "Loja de aplicativos ITM",
+  "description": "Aprenda programação com videoaulas e baixe aplicativos Android",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#0f172a",
   "theme_color": "#2563eb",
+  "orientation": "portrait",
   "icons": [
     {
       "src": "icons/icon-192.png",
@@ -14,8 +15,9 @@
     },
     {
       "src": "icons/icon-512.png",
-      "sizes": "512x512", 
+      "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "categories": ["education", "productivity"]
 }
