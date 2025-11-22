@@ -1,23 +1,24 @@
-const CACHE_NAME = 'itm-v1';
+// Service Worker para funcionamento offline
+const CACHE_NAME = 'itm-store-v1';
 const urlsToCache = [
   '/',
   '/index.html',
-  '/styles.css',
-  '/app.js',
-  '/icons/icon-192x192.png',
-  '/icons/icon-512x512.png'
+  '/itm-store.html',
+  '/css/style.css',
+  '/js/main.js',
+  '/manifest.json'
 ];
 
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
   event.waitUntil(
     caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+      .then((cache) => cache.addAll(urlsToCache))
   );
 });
 
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
   event.respondWith(
     caches.match(event.request)
-      .then(response => response || fetch(event.request))
+      .then((response) => response || fetch(event.request))
   );
 });
